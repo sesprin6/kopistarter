@@ -4,19 +4,13 @@
 	if ($_POST[OPTION_POST] === OPTION_SHOW)
 	{
 		$p_statement = $connection->prepare(QUERY_GET);
-		$p_statement->bind_param('s', $_POST[KEY_ID]);
+		$p_statement->bind_param('s', $_POST[KEY_OWNER]);
 		$p_statement->execute();
 
-		$data = $p_statement->get_result()->fetch_assoc();
+		$data = $p_statement->get_result()->fetch_all(MYSQLI_ASSOC);
 		$result = [];
-		array_push($result,
-		[
-			KEY_ID => $data[TBL_ID],
-			KEY_NAME => $data[TBL_NAME],
-			KEY_ROLE => $data[TBL_ROLE],
-			KEY_EMAIL => $data[TBL_EMAIL],
-			KEY_MESSAGE => $data[TBL_MESSAGE]
-		]);
+		foreach ($data as $row)
+			array_push($result, [KEY_INFO => $row[TBL_INFO]]);
 
 		SetJsonHeader();
 		echo json_encode(['result' => $result]);
@@ -29,8 +23,8 @@
 		foreach ($data as $row)
 			array_push($result,
 			[
-				KEY_ID => $row[TBL_ID],
-				KEY_NAME => $row[TBL_NAME]
+				KEY_OWNER => $row[TBL_OWNER],
+				KEY_INFO => $row[TBL_INFO]
 			]);
 
 		SetJsonHeader();
