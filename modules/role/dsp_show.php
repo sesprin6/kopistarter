@@ -12,10 +12,7 @@
 		array_push($result,
 		[
 			KEY_ID => $data[TBL_ID],
-			KEY_NAME => $data[TBL_NAME],
-			KEY_ROLE => $data[TBL_ROLE],
-			KEY_EMAIL => $data[TBL_EMAIL],
-			KEY_MESSAGE => $data[TBL_MESSAGE]
+			KEY_NAME => $data[TBL_NAME]
 		]);
 
 		SetJsonHeader();

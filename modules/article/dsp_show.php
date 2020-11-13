@@ -12,10 +12,11 @@
 		array_push($result,
 		[
 			KEY_ID => $data[TBL_ID],
-			KEY_NAME => $data[TBL_NAME],
-			KEY_ROLE => $data[TBL_ROLE],
-			KEY_EMAIL => $data[TBL_EMAIL],
-			KEY_MESSAGE => $data[TBL_MESSAGE]
+			KEY_USER => $data[TBL_USER],
+			KEY_TITLE => $data[TBL_TITLE],
+			KEY_CATEGORY => $data[TBL_CATEGORY],
+			KEY_DESCRIPTION => $data[TBL_DESCRIPTION],
+			KEY_CREATE_TIME => $data[TBL_CREATE_TIME]
 		]);
 
 		SetJsonHeader();
@@ -30,7 +31,7 @@
 			array_push($result,
 			[
 				KEY_ID => $row[TBL_ID],
-				KEY_NAME => $row[TBL_NAME]
+				KEY_TITLE => $row[TBL_TITLE]
 			]);
 
 		SetJsonHeader();
