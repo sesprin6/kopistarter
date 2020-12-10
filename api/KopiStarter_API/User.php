@@ -5,9 +5,13 @@
 		require_once 'Globals/MySQL_Query.php';
 		require_once 'Security/_autoload.php';
 
+		require_once 'UserParam.php';
+
 		use KopiStarter_API\Exceptions;
 		use KopiStarter_API\Globals;
 		use KopiStarter_API\Security;
+
+		use KopiStarter_API\UserParam;
 
 		final class User
 		{
@@ -47,6 +51,27 @@
 			public final function getUsername() : string
 			{
 				return $this->username;
+			}
+
+			public final function registerUser(UserParam $param) : bool
+			{
+				if ($this->check_user_exists())
+					return false;
+
+				$connection = Connection::get_mysql_connection();
+				$statement = $connection->prepare(Globals\MySQL_Query::USER_INSERT);
+
+				$crypt = Security\Crypto_PBKDF2::generateHash($param->get_password());
+
+				$param_userid = $this->username;
+				$param_password_hash = $crypt['hash'];
+				$param_password_salt = $crypt['salt'];
+				$param_name = $param->get_name();
+				$param_role = $param->get_role();
+				$param_email = $param->get_email();
+
+				$statement->bind_param('ssssis', $param_userid, $param_password_hash, $param_password_salt, $param_name, $param_role, $param_email);
+				return $statement->execute();
 			}
 		}
 	}
