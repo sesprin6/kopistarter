@@ -15,5 +15,6 @@
 	const TBL_NAME		    = 'name';
 
 	//Parameters
+	const OPTION_POST = 'post_option';
 	const OPTION_SHOW = 'show';
 	const OPTION_SHOW_ALL = 'show_all';

@@ -1,5 +1,7 @@
 <?php
 	require_once 'cfg_settings.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/connection.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/output.php';
 
 	if ($_POST[OPTION_POST] === OPTION_SHOW)
 	{

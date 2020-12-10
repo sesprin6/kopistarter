@@ -1,7 +1,7 @@
 <?php
 	const HOST = 'localhost';
-	const USER = 'root';
-	const PASSWORD = '';
+	const USER = 'ksadmin';
+	const PASSWORD = 'Kopistarter18';
 	const DATABASE = 'kopistarter';
 
 	$connection = new mysqli(HOST, USER, PASSWORD, DATABASE);
